@@ -317,12 +317,20 @@
     /* ═══ AMBIENT BG LAYER ══════════════════════════════════ */
     #ambientBg {
       position:fixed; inset:0; z-index:-1; pointer-events:none;
+      --gx1: 50%;
+      --gy1: 50%;
+      --gx2: 72%;
+      --gy2: 34%;
+      --gfocus: 0.95;
+      --gdual: 0;
+      will-change: background-position, transform, opacity;
+      transform: translateZ(0);
+      transition: --gx1 .9s cubic-bezier(.22,1,.36,1), --gy1 .9s cubic-bezier(.22,1,.36,1), --gx2 .9s cubic-bezier(.22,1,.36,1), --gy2 .9s cubic-bezier(.22,1,.36,1), --gfocus .9s cubic-bezier(.22,1,.36,1), --gdual .9s cubic-bezier(.22,1,.36,1);
       background:
-        radial-gradient(ellipse 80vw 60vh at 10% 35%, rgba(255,90,19,0.055) 0%, transparent 60%),
-        radial-gradient(ellipse 60vw 70vh at 92% 65%, rgba(180,80,5,0.04) 0%, transparent 55%),
-        radial-gradient(ellipse 100vw 40vh at 50% 5%,  rgba(255,90,19,0.03) 0%, transparent 50%),
-        radial-gradient(ellipse 70vw 50vh at 70% 90%,  rgba(232,120,10,0.045) 0%, transparent 55%);
-      animation: ambientShift 22s ease-in-out infinite alternate;
+        radial-gradient(ellipse 78vw 52vh at var(--gx1) var(--gy1), rgba(255,90,19,calc(0.038 * var(--gfocus))) 0%, transparent 63%),
+        radial-gradient(ellipse 50vw 36vh at var(--gx2) var(--gy2), rgba(255,122,52,calc(0.025 * var(--gdual))) 0%, transparent 62%),
+        radial-gradient(ellipse 80vw 48vh at calc(100% - var(--gx2)) calc(100% - var(--gy2)), rgba(220,116,25,calc(0.022 * var(--gdual))) 0%, transparent 64%);
+      animation: ambientShift 30s ease-in-out infinite alternate;
     }
     @keyframes ambientShift {
       0%   { opacity:.85; transform:scale(1) translate(0,0); }
@@ -485,37 +493,56 @@
       padding:4px 12px; border-radius:999px;
     }
     .portfolio-card h3 { max-width:680px; }
-    .portfolio-card__list {
-      list-style:none; display:flex; flex-direction:column; gap:7px;
+    .portfolio-card__metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .metric-card {
+      border:1px solid rgba(255,255,255,0.13);
+      background:rgba(255,255,255,0.02);
+      border-radius:12px;
+      padding:12px 14px;
+      transition:border-color .25s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease), transform .25s var(--ease);
     }
-    .portfolio-card__list li {
-      font-size:14px; color:var(--muted); padding-left:18px; position:relative; line-height:1.7;
+    .metric-card:hover {
+      transform:translateY(-2px);
+      border-color:rgba(255,122,52,0.42);
+      background:rgba(255,122,52,0.045);
+      box-shadow:0 8px 20px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,122,52,0.12);
     }
-    .portfolio-card__list li::before {
-      content:"—"; position:absolute; left:0; color:var(--accent); font-size:12px;
-    }
+    .metric-card__values { font-size:15px; font-weight:700; letter-spacing:-0.01em; color:#fff; margin-bottom:4px; }
+    .metric-card__values del { color:rgba(255,255,255,0.45); margin-right:8px; }
+    .metric-card__label { font-size:12px; color:var(--muted); line-height:1.4; }
     .portfolio-card__link {
-      display:inline-flex; align-items:center; gap:6px;
-      color:var(--accent); font-family:"Manrope",sans-serif;
-      font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,0.86); font-family:"Manrope",sans-serif;
+      font-size:12px; font-weight:600; letter-spacing:0.04em; text-transform:none;
       text-decoration:none; margin-top:auto;
-      transition:opacity .2s, transform .2s;
-      text-decoration: underline;
-      text-underline-offset: 4px;
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:999px; padding:10px 16px;
+      background:rgba(255,255,255,0.03);
+      transition:opacity .25s, transform .25s, border-color .25s, box-shadow .25s, background .25s;
     }
-    .portfolio-card__link:hover { opacity:0.95; transform:translateX(3px); }
-    .portfolio-card__link::after { content:"↗"; font-size:14px; }
+    .portfolio-card__link:hover {
+      opacity:1; transform:translateY(-1px);
+      border-color:rgba(255,122,52,0.45);
+      background:rgba(255,122,52,0.08);
+      box-shadow:0 8px 24px rgba(0,0,0,0.26),0 0 20px rgba(255,90,19,0.14);
+    }
 
     /* ═══ SERVICES ══════════════════════════════════════════ */
     .services-section { padding:100px 0; position:relative; }
     .services-grid {
       display:grid; grid-template-columns:repeat(2,1fr); gap:20px;
     }
+    .services-grid .glass-card {
+      background:rgba(255,255,255,0.01);
+      border:1px solid rgba(255,255,255,0.14);
+      box-shadow:0 8px 26px rgba(0,0,0,0.14);
+      backdrop-filter:blur(3px);
+    }
     .service-card { display:flex; flex-direction:column; gap:18px; }
     .service-card--primary {
-      background:linear-gradient(155deg, rgba(255,90,19,0.26) 0%, rgba(255,90,19,0.05) 48%, #141923 100%);
-      border-color:rgba(255,122,52,0.48);
-      box-shadow:0 16px 40px rgba(255,90,19,0.16), var(--shadow);
+      background:rgba(255,122,52,0.03);
+      border-color:rgba(255,122,52,0.38);
+      box-shadow:0 10px 28px rgba(0,0,0,0.22);
     }
     .service-card--primary h3 { color:#fff; }
     .service-card--primary .service-list li { color:rgba(255,255,255,0.9); }
@@ -829,7 +856,7 @@
     .field input, .field select, .field textarea {
       background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.13);
       border-radius:14px; padding:13px 16px;
-      color:var(--text); font-family:"Manrope",sans-serif; font-size:14px;
+      color:var(--text); font-family:"Manrope",sans-serif; font-size:14px; font-weight:500; letter-spacing:0.01em; line-height:1.45;
       transition:border-color .2s;
       outline:none; width:100%;
     }
@@ -895,6 +922,7 @@
       .hero-stats, .promise-grid, .services-grid { grid-template-columns:1fr; }
       .stack-wrap { margin-top:34px; }
       .portfolio-card { width:100%; padding:22px 18px; }
+      .portfolio-card__metrics { grid-template-columns:1fr; }
       .process-section { padding:72px 0; }
       .process-list { margin-top:36px; }
       .process-step { gap:14px; padding:20px 0; }
@@ -1041,11 +1069,11 @@
         </div>
         <h3>Авторазбор телефонных звонков</h3>
         <p>AI-Микросервис для колл-центра: обработка звонков и контроль операторов</p>
-        <ul class="portfolio-card__list">
-          <li>время обработки звонков:  2 минуты → 30 секунд </li>
-          <li>-83% ошибок при заполнении CRM</li>
-          <li>2 сотрудника уволены после проверки качества</li>
-        </ul>
+        <div class="portfolio-card__metrics">
+          <article class="metric-card"><p class="metric-card__values"><del>2 минуты</del>30 секунд</p><p class="metric-card__label">время обработки звонков</p></article>
+          <article class="metric-card"><p class="metric-card__values"><del>100%</del>-83%</p><p class="metric-card__label">ошибок при заполнении CRM</p></article>
+          <article class="metric-card"><p class="metric-card__values"><del>2 сотрудника</del>0</p><p class="metric-card__label">уволены после проверки качества</p></article>
+        </div>
         <a class="portfolio-card__link" href="call-center-case.html">Читать полностью</a>
       </article>
 
@@ -1056,10 +1084,10 @@
         </div>
         <h3>AI-составитель ТЗ</h3>
         <p>ИИ-помощник, который превращает абстрактные идеи в понятное ТЗ и снимает проблему "чистого листа"</p>
-        <ul class="portfolio-card__list">
-          <li>подготовка спецификаций: 2 дня → 2 часа</li>
-          <li>единый стандарт оформления ТЗ</li>
-        </ul>
+        <div class="portfolio-card__metrics">
+          <article class="metric-card"><p class="metric-card__values"><del>2 дня</del>2 часа</p><p class="metric-card__label">подготовка спецификаций</p></article>
+          <article class="metric-card"><p class="metric-card__values"><del>разрозненно</del>единый</p><p class="metric-card__label">стандарт оформления ТЗ</p></article>
+        </div>
         <a class="portfolio-card__link" href="tz-generator-case.html">Читать полностью</a>
       </article>
 
@@ -1070,11 +1098,11 @@
         </div>
         <h3>Контент-завод SMM</h3>
         <p>Связка из ИИ-Агентов, создающая посты для социальных сетей с упором на аудиторию</p>
-        <ul class="portfolio-card__list">
-          <li>создание поста: 40 минут → 2 минуты</li>
-          <li>единый стиль контента</li>
-          <li>x1.3 рост вовлеченности</li>
-        </ul>
+        <div class="portfolio-card__metrics">
+          <article class="metric-card"><p class="metric-card__values"><del>40 минут</del>2 минуты</p><p class="metric-card__label">создание поста</p></article>
+          <article class="metric-card"><p class="metric-card__values"><del>хаотично</del>единый</p><p class="metric-card__label">стиль контента</p></article>
+          <article class="metric-card"><p class="metric-card__values"><del>x1.0</del>x1.3</p><p class="metric-card__label">рост вовлеченности</p></article>
+        </div>
         <a class="portfolio-card__link" href="smm-case.html">Читать полностью</a>
       </article>
 
@@ -1085,11 +1113,11 @@
         </div>
         <h3>Корпоративная система для ИТ-отдела</h3>
         <p>Единая среда для управления проектами, контроля задач и автоматического резервного копирования с прозрачной системой доступа</p>
-        <ul class="portfolio-card__list">
-          <li>x10 быстрее поиск информации</li>
-          <li>ролевой доступ и контроль процессов</li>
-          <li>резервное копирование и стабильность данных</li>
-        </ul>
+        <div class="portfolio-card__metrics">
+          <article class="metric-card"><p class="metric-card__values"><del>x1</del>x10</p><p class="metric-card__label">быстрее поиск информации</p></article>
+          <article class="metric-card"><p class="metric-card__values"><del>без ролей</del>ролевой</p><p class="metric-card__label">доступ и контроль процессов</p></article>
+          <article class="metric-card"><p class="metric-card__values"><del>ручное</del>авто</p><p class="metric-card__label">резервное копирование и стабильность данных</p></article>
+        </div>
         <a class="portfolio-card__link" href="pbms-case.html">Читать полностью</a>
       </article>
 
@@ -1100,11 +1128,11 @@
         </div>
         <h3>Платформа для работы с локальным ИИ</h3>
         <p>Веб-интерфейс для удобного взаимодействия с локальной LLM: настройка параметров, . . .</p>
-        <ul class="portfolio-card__list">
-          <li>A/B тестирование: 40 минут → 5 минут </li>
-          <li>30 секунд на развёртывание</li>
-          <li>полная приватность</li>
-        </ul>
+        <div class="portfolio-card__metrics">
+          <article class="metric-card"><p class="metric-card__values"><del>40 минут</del>5 минут</p><p class="metric-card__label">A/B тестирование</p></article>
+          <article class="metric-card"><p class="metric-card__values"><del>дольше</del>30 секунд</p><p class="metric-card__label">на развёртывание</p></article>
+          <article class="metric-card"><p class="metric-card__values"><del>частично</del>полная</p><p class="metric-card__label">приватность</p></article>
+        </div>
         <a class="portfolio-card__link" href="promptlab-case.html">Читать полностью</a>
       </article>
 
@@ -1215,7 +1243,7 @@ style="background:linear-gradient(180deg,rgba(28,13,0,0.7) 0%,rgba(10,5,0,0.85) 
 </section>
 
 <!-- ═══ QUOTE BREAK ════════════════════════════════════════════ -->
-<section class="quote-break">
+<section class="quote-break" id="subscription">
   <div class="section-inner quote-break__inner">
     <h2 class="quote-break__title reveal">Подписочный формат</h2>
     <div class="quote-break__content reveal">
@@ -1395,6 +1423,49 @@ mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
 
 /* ═══ HERO PANELS ══════════════════════════════════════════ */
 (function() {
+  const ambient=document.getElementById('ambientBg');
+  const sectionTargets=[
+    {id:'welcome',x1:50,y1:45,x2:68,y2:36,focus:0.92,dual:0.05},
+    {id:'economics',x1:76,y1:44,x2:88,y2:52,focus:1,dual:0.08},
+    {id:'portfolio',x1:72,y1:42,x2:25,y2:60,focus:0.9,dual:1},
+    {id:'services',x1:20,y1:78,x2:38,y2:70,focus:0.88,dual:0.2},
+    {id:'process',x1:26,y1:20,x2:42,y2:30,focus:0.9,dual:0.18},
+    {id:'subscription',x1:56,y1:28,x2:62,y2:24,focus:1,dual:0.12},
+    {id:'faq',x1:82,y1:52,x2:70,y2:60,focus:0.9,dual:0.1}
+  ].map(cfg=>({el:document.getElementById(cfg.id),...cfg})).filter(i=>i.el);
+
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function clamp(v,a,b){return Math.min(Math.max(v,a),b);}
+  function ease(v){return v<0.5?4*v*v*v:1-Math.pow(-2*v+2,3)/2;}
+  function updateAmbient(){
+    if(!ambient||sectionTargets.length<2)return;
+    const vh=Math.max(window.innerHeight,1);
+    const center=vh*0.5;
+    let idx=0;
+    for(let i=0;i<sectionTargets.length-1;i++){
+      const top=sectionTargets[i].el.getBoundingClientRect().top;
+      const nextTop=sectionTargets[i+1].el.getBoundingClientRect().top;
+      if(center>=top&&center<nextTop){idx=i;break;}
+      if(center>=nextTop)idx=i+1;
+    }
+    const a=sectionTargets[Math.min(idx,sectionTargets.length-1)];
+    const b=sectionTargets[Math.min(idx+1,sectionTargets.length-1)];
+    const at=a.el.getBoundingClientRect().top;
+    const bt=b.el.getBoundingClientRect().top;
+    const raw=bt===at?1:clamp((center-at)/(bt-at),0,1);
+    const t=ease(raw);
+    ambient.style.setProperty('--gx1',`${lerp(a.x1,b.x1,t).toFixed(2)}%`);
+    ambient.style.setProperty('--gy1',`${lerp(a.y1,b.y1,t).toFixed(2)}%`);
+    ambient.style.setProperty('--gx2',`${lerp(a.x2,b.x2,t).toFixed(2)}%`);
+    ambient.style.setProperty('--gy2',`${lerp(a.y2,b.y2,t).toFixed(2)}%`);
+    ambient.style.setProperty('--gfocus',`${lerp(a.focus,b.focus,t).toFixed(3)}`);
+    ambient.style.setProperty('--gdual',`${lerp(a.dual,b.dual,t).toFixed(3)}`);
+  }
+  let ambientTicking=false;
+  window.addEventListener('scroll',()=>{if(!ambientTicking){ambientTicking=true;requestAnimationFrame(()=>{ambientTicking=false;updateAmbient();});}},{passive:true});
+  window.addEventListener('resize',updateAmbient);
+  updateAmbient();
+
   document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
       const item = button.closest('.faq-item');
