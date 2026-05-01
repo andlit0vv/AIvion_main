@@ -892,7 +892,59 @@
       .contact-side { padding:24px 16px; }
       .field-grid { grid-template-columns:1fr; }
     }
-  </style>
+  
+
+    /* === 2026 premium consulting redesign override === */
+    :root {
+      --bg:#0a0a0b;
+      --accent:#C96F1A;
+      --accent-strong:#DF7E22;
+      --accent-soft:rgba(201,111,26,0.12);
+      --stroke-accent:rgba(201,111,26,0.34);
+      --text:#f2f2f0;
+      --muted:rgba(242,242,240,0.58);
+      --muted-strong:rgba(242,242,240,0.78);
+      --stroke:rgba(255,255,255,0.14);
+      --radius:18px;
+      --shadow:none;
+    }
+    body{background:linear-gradient(180deg,#0b0b0c 0%,#111214 100%);letter-spacing:0.005em;}
+    body::after{opacity:.04;mix-blend-mode:normal}
+    header::before{background:rgba(7,7,8,.84);border-bottom:1px solid rgba(255,255,255,.12)}
+    header.scrolled::before{backdrop-filter:none;background:rgba(9,9,10,.94)}
+    .logo{font-family:"Space Grotesk",sans-serif;font-style:normal;font-size:20px;letter-spacing:.06em;text-transform:uppercase}
+    nav a{border:1px solid transparent;border-radius:6px}
+    nav a:hover{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.03)}
+    .nav-cta,.btn-accent{background:var(--accent)!important;color:#130900!important;box-shadow:none!important;border-radius:6px!important}
+    .nav-cta:hover,.btn-accent:hover{background:var(--accent-strong)!important;transform:translateY(-1px)}
+    .opening-screen,.panels-section,.portfolio-section,.services-section,.process-section,.economics-section,.contact-section,.footer-section{background:transparent!important}
+    .orbs,.orb,.grid-reveal,.light-beam,.hero-glow{display:none!important}
+    .opening-inner{text-align:left;justify-items:start;max-width:1320px;padding:0 clamp(20px,4vw,56px)}
+    .opening-title{max-width:980px;font-size:clamp(40px,5.8vw,82px);line-height:.92;text-transform:uppercase}
+    .title-accent{background:none;-webkit-text-fill-color:var(--accent);color:var(--accent);filter:none}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:min(100%,980px)}
+    .hero-stat,.glass-card,.portfolio-card,.service-card,.promise-card,.process-step{border:1px solid rgba(255,255,255,.18)!important;background:#101114!important;border-radius:12px!important;box-shadow:none!important;position:relative;overflow:hidden}
+    .hero-stat::before,.glass-card::before,.portfolio-card::before,.service-card::before,.promise-card::before,.process-step::before{content:"";position:absolute;top:0;right:0;width:42px;height:42px;background:linear-gradient(135deg,transparent 49%,rgba(255,255,255,.22) 50%);opacity:.9}
+    .glass-card::after,.process-step::after{display:none!important}
+    .glass-card:hover,.portfolio-card:hover,.service-card:hover,.process-step:hover{transform:translateY(-4px);border-color:var(--stroke-accent)!important;background:#131417!important}
+    .services-grid{grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+    .services-grid .service-card:nth-child(1){grid-column:span 5}
+    .services-grid .service-card:nth-child(2){grid-column:span 7}
+    .services-grid .service-card:nth-child(3){grid-column:span 7}
+    .services-grid .service-card:nth-child(4){grid-column:span 5}
+    .portfolio-stack,.process-list{gap:14px}
+    .process-list::before{background:linear-gradient(180deg,rgba(201,111,26,.25),transparent)}
+    .process-icon{border-radius:8px;background:rgba(201,111,26,.15);box-shadow:none}
+    .section-heading h2,.portfolio-card h3,.process-copy h3{font-family:"Space Grotesk",sans-serif;text-transform:uppercase;letter-spacing:-.02em}
+    .btn,.portfolio-card__link{border-radius:6px;text-transform:uppercase}
+    .contact-card,.brief-form,.footer-inner{border:1px solid rgba(255,255,255,.16);border-radius:12px;background:#0f1012}
+    @media (max-width:900px){
+      .hero-stats{grid-template-columns:1fr}
+      .services-grid{grid-template-columns:1fr}
+      .services-grid .service-card:nth-child(n){grid-column:auto}
+      .opening-title{font-size:clamp(34px,10vw,56px)}
+    }
+</style>
 </head>
 <body>
 <div id="ambientBg" aria-hidden="true"></div>
