@@ -646,32 +646,40 @@
       padding:10px 0 90px;
       background:linear-gradient(180deg,rgba(8,4,0,0.98) 0%,rgba(4,2,0,0.95) 100%);
     }
-    .faq-list { display:flex; flex-direction:column; gap:18px; }
+    .faq-title {
+      margin:0 0 26px;
+      font-size:clamp(34px,4.2vw,68px);
+      font-weight:700;
+      letter-spacing:-0.04em;
+      line-height:1.05;
+      color:var(--text);
+    }
+    .faq-list { display:flex; flex-direction:column; gap:12px; }
     .faq-item {
       border:1px solid rgba(232,146,10,0.45);
-      border-radius:32px;
+      border-radius:24px;
       background:radial-gradient(circle at 85% 0, rgba(232,146,10,0.20), rgba(30,14,0,0.78) 50%, rgba(0,0,0,0.95) 100%);
       overflow:hidden;
     }
     .faq-question {
       width:100%; background:none; border:none; color:var(--text); cursor:pointer;
-      padding:34px 44px; display:flex; align-items:center; justify-content:space-between; gap:20px;
+      padding:22px 28px; display:flex; align-items:center; justify-content:space-between; gap:14px;
       text-align:left;
     }
-    .faq-question span:first-child { font-size:clamp(26px,3.5vw,56px); font-weight:700; letter-spacing:-0.045em; line-height:1.06; }
-    .faq-icon { width:36px; height:36px; position:relative; flex-shrink:0; }
+    .faq-question span:first-child { font-size:clamp(20px,2.4vw,40px); font-weight:700; letter-spacing:-0.03em; line-height:1.15; }
+    .faq-icon { width:28px; height:28px; position:relative; flex-shrink:0; }
     .faq-icon::before, .faq-icon::after {
       content:""; position:absolute; left:50%; top:50%; background:var(--accent); transform:translate(-50%,-50%);
       border-radius:999px;
     }
-    .faq-icon::before { width:32px; height:2px; }
-    .faq-icon::after { width:2px; height:32px; transition:opacity .25s var(--ease); }
+    .faq-icon::before { width:24px; height:2px; }
+    .faq-icon::after { width:2px; height:24px; transition:opacity .25s var(--ease); }
     .faq-answer {
-      max-height:0; opacity:0; overflow:hidden; padding:0 44px;
-      color:var(--muted-strong); font-size:clamp(17px,1.7vw,44px); line-height:1.46;
+      max-height:0; opacity:0; overflow:hidden; padding:0 28px;
+      color:var(--muted-strong); font-size:clamp(14px,1.2vw,20px); line-height:1.5;
       transition:max-height .35s var(--ease), opacity .25s var(--ease), padding-bottom .35s var(--ease);
     }
-    .faq-item.is-open .faq-answer { max-height:220px; opacity:1; padding-bottom:30px; }
+    .faq-item.is-open .faq-answer { max-height:180px; opacity:1; padding-bottom:20px; }
     .faq-item.is-open .faq-icon::after { opacity:0; }
     /* ═══ FOOTER ════════════════════════════════════════════ */
     .site-footer {
@@ -1132,6 +1140,43 @@ style="background:linear-gradient(180deg,rgba(28,13,0,0.7) 0%,rgba(10,5,0,0.85) 
 </section>
 
 
+
+
+<!-- ═══ FAQ ════════════════════════════════════════════════ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <h2 class="faq-title reveal">FAQ</h2>
+    <div class="faq-list">
+      <article class="faq-item is-open">
+        <button class="faq-question" type="button" aria-expanded="true">
+          <span>Сможет ли ИИ полностью заменить наших сотрудников?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Нет. Мы внедряем ИИ как усиление команды: убираем рутину, ускоряем обработку данных и освобождаем людей для задач, где важны экспертиза, решения и коммуникация.
+        </div>
+      </article>
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>Как долго длится внедрение ИИ в существующие процессы?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Обычно первый рабочий результат занимает от 2 до 6 недель — срок зависит от сложности процессов, объёма данных и уровня интеграции с текущими системами.
+        </div>
+      </article>
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>Что нужно от нас для старта проекта?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          На старте достаточно короткого брифинга: цели, боли, текущий процесс и ответственный со стороны команды. Дальше мы сами формируем пошаговый план внедрения.
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
 
 <!-- ═══ FOOTER ════════════════════════════════════════════════ -->
