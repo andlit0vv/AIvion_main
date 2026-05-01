@@ -35,22 +35,22 @@
     .cf-chip{display:flex;align-items:center;cursor:pointer}
     .cf-chip input{display:none}
     .cf-chip span{font-family:"Montserrat",sans-serif;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.18);color:rgba(107,114,128,1);transition:all .2s}
-    .cf-chip input:checked + span{background:rgba(232,146,10,0.14);border-color:rgba(232,146,10,0.45);color:#E8920A}
+    .cf-chip input:checked + span{background:var(--accent-soft);border-color:var(--accent-strong);color:var(--muted-strong)}
     .cf-custom-role{display:none}
     .cf-custom-role.is-visible{display:flex}
     .cf-consents{display:flex;flex-direction:column;gap:10px}
     .cf-consent{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
     .cf-consent input{margin-top:3px;accent-color:#E8920A;flex-shrink:0}
     .cf-consent span{font-size:13px;color:rgba(107,114,128,1);line-height:1.55}
-    .cf-consent a{color:#E8920A;text-decoration:none}
+    .cf-consent a{color:var(--accent);text-decoration:none}
     .cf-legal{font-size:12px;color:rgba(107,114,128,1);opacity:0.7;line-height:1.5}
     .cf-footer{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
     .cf-status{font-size:13px;font-family:"Montserrat",sans-serif}
     .cf-status.is-success{color:#34d399}
     .cf-status.is-error{color:#f87171}
     .cf-trap{display:none !important}
-    .cf-submit{display:inline-flex;align-items:center;justify-content:center;padding:13px 26px;border-radius:999px;border:none;background:#E8920A;color:#1a0800;font-weight:700;font-family:"Montserrat",sans-serif;font-size:14px;cursor:pointer;transition:background .2s,transform .2s}
-    .cf-submit:hover{background:#F5A822;transform:translateY(-1px)}
+    .cf-submit{display:inline-flex;align-items:center;justify-content:center;padding:13px 26px;border-radius:999px;border:none;background:var(--accent);color:var(--muted-strong);font-weight:700;font-family:"Montserrat",sans-serif;font-size:14px;cursor:pointer;transition:background .2s,transform .2s}
+    .cf-submit:hover{background:var(--accent);transform:translateY(-1px)}
     .cf-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none}
     @media(max-width:900px){
       .contact-modal__content{grid-template-columns:1fr}
