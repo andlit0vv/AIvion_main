@@ -7,11 +7,11 @@
     .contact-modal.is-open{opacity:1;pointer-events:all}
     .contact-modal__backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.82);backdrop-filter:blur(12px)}
     .contact-modal__dialog{position:absolute;inset:0;overflow-y:auto;display:flex;align-items:flex-start;justify-content:center;padding:clamp(20px,5vw,60px) clamp(16px,4vw,40px)}
-    .contact-modal__content{position:relative;z-index:1;width:min(100%,760px);background:rgba(10,5,0,0.95);border:1px solid rgba(255,255,255,0.14);border-radius:18px;overflow:hidden}
+    .contact-modal__content{position:relative;z-index:1;width:min(100%,760px);background:rgba(10,5,0,0.95);border:1px solid rgba(255,255,255,0.14);border-radius:18px;overflow:hidden;display:block}
     .contact-modal__close{position:absolute;top:20px;right:20px;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);color:rgba(107,114,128,1);font-size:20px;line-height:1;display:grid;place-items:center;cursor:pointer;transform:rotate(45deg);transition:background .2s,color .2s}
     .contact-modal__close:hover{background:rgba(255,255,255,0.12);color:#fff}
     .cf-main{padding:44px 36px}
-    .cf-main h2{font-family:"Montserrat",sans-serif;font-size:clamp(24px,2.8vw,36px);font-weight:800;letter-spacing:-0.03em;color:#fff;line-height:1.15;margin-bottom:20px}
+    .cf-main h2{font-family:"Montserrat",sans-serif;font-size:clamp(24px,2.5vw,34px);font-weight:800;margin-bottom:20px}
     .cf-form{display:flex;flex-direction:column;gap:18px}
     .cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .cf-label{display:flex;flex-direction:column;gap:7px}
@@ -43,7 +43,9 @@
     .cf-submit{display:inline-flex;align-items:center;justify-content:center;padding:13px 26px;border-radius:999px;border:none;background:#E8920A;color:#1a0800;font-weight:700;font-family:"Montserrat",sans-serif;font-size:14px;cursor:pointer;transition:background .2s,transform .2s}
     .cf-submit:hover{background:#F5A822;transform:translateY(-1px)}
     .cf-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none}
-    @media(max-width:900px){.contact-modal__content{width:min(100%,760px)}}
+    @media(max-width:900px){
+      .contact-modal__content{grid-template-columns:1fr}
+    }
     @media(max-width:620px){.cf-grid{grid-template-columns:1fr}}
   `;
   document.head.appendChild(style);
@@ -88,6 +90,15 @@
                   <option value="Телефон">Телефон</option>
                   <option value="Email">Email</option>
                   <option value="WhatsApp">WhatsApp</option>
+                </select>
+              </label>
+              <label class="cf-label">
+                <span class="cf-label-text">Выберите бюджет</span>
+                <select class="cf-input" name="budget">
+                  <option value="до 200 000">до 200 000</option>
+                  <option value="200 000 - 1 000 000">200 000 - 1 000 000</option>
+                  <option value="1 000 000 - 3 000 000">1 000 000 - 3 000 000</option>
+                  <option value="Более 3 000 000">Более 3 000 000</option>
                 </select>
               </label>
             </div>

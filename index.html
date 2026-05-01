@@ -364,7 +364,7 @@
 
     /* ═══ SECTION COMMON ════════════════════════════════════ */
     .section-inner {
-      width:min(100% - 32px,1080px); margin:0 auto;
+      width:min(100% - 32px,1060px); margin:0 auto;
       position:relative; z-index:2;
     }
     .section-pad { padding:110px 0 100px; position:relative; }
@@ -623,8 +623,8 @@
       background:linear-gradient(180deg,rgba(8,4,0,0.98) 0%,rgba(4,2,0,0.95) 50%,rgba(10,5,0,0.98) 100%);
     }
     .quote-break__inner {
-      display:grid; grid-template-columns:1.45fr 1fr; gap:56px;
-      align-items:center;
+      display:grid; grid-template-columns:minmax(280px,1.1fr) minmax(320px,1fr); gap:48px;
+      align-items:start;
     }
     .quote-break__text {
       font-family:"Space Grotesk","Montserrat",sans-serif;
@@ -632,7 +632,20 @@
       font-weight:700; letter-spacing:-0.04em; line-height:1.18;
       color:var(--text);
     }
-    .quote-break__text em {
+    .quote-break__description {
+      font-size:clamp(17px,1.8vw,20px); line-height:1.6; color:var(--muted-strong);
+      max-width:480px; padding-top:12px;
+    }
+    .quote-break__action { grid-column:1 / -1; }
+
+    .faq-section { padding:30px 0 90px; }
+    .faq-list { display:flex; flex-direction:column; gap:18px; }
+    .faq-item { border:1px solid rgba(232,146,10,0.45); border-radius:28px; background:linear-gradient(90deg,rgba(30,14,0,0.90) 0%,rgba(18,9,0,0.72) 55%,rgba(42,18,0,0.78) 100%); overflow:hidden; }
+    .faq-question { width:100%; background:none; border:none; cursor:pointer; color:var(--text); text-align:left; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:36px 44px; font-family:"Space Grotesk","Montserrat",sans-serif; font-size:clamp(28px,3vw,52px); font-weight:700; letter-spacing:-0.04em; }
+    .faq-icon { color:var(--accent); font-size:54px; line-height:1; font-weight:300; min-width:44px; text-align:center; }
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height .35s var(--ease), padding .35s var(--ease); padding:0 44px; color:var(--muted-strong); font-size:17px; line-height:1.6; }
+    .faq-item.is-open .faq-answer { max-height:260px; padding:0 44px 34px; }
+    .quote-break__description em {
       font-style:normal;
       background:linear-gradient(135deg,var(--accent) 0%,var(--accent-strong) 50%,#FFD060 100%);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
@@ -823,15 +836,15 @@
     @media (max-width:900px) {
       .promise-grid, .services-grid { grid-template-columns:1fr 1fr; }
       .contact-modal__content { grid-template-columns:1fr; }
-      .contact-side { border-right:none; border-bottom:1px solid var(--stroke); }
-      .process-step { grid-template-columns:44px 1fr; }
+            .process-step { grid-template-columns:44px 1fr; }
       .process-number { display:none; }
       .process-list::before { left:21px; }
       .process-dot { left:15px; }
-      .quote-break__inner { grid-template-columns:1fr; gap:24px; }
-      .faq-question { padding:26px 24px; }
-      .faq-answer { padding:0 24px; }
-      .faq-item.is-open .faq-answer { padding-bottom:24px; }
+      .quote-break__inner { grid-template-columns:1fr; gap:18px; }
+      .quote-break__description { padding-top:0; }
+      .faq-question { padding:26px 22px; font-size:clamp(24px,5.8vw,34px); }
+      .faq-answer { padding:0 22px; }
+      .faq-item.is-open .faq-answer { padding:0 22px 24px; }
     }
     @media (max-width:620px) {
       .hero-stats, .promise-grid, .services-grid { grid-template-columns:1fr; }
@@ -1127,59 +1140,22 @@ style="background:linear-gradient(180deg,rgba(28,13,0,0.7) 0%,rgba(10,5,0,0.85) 
 <!-- ═══ QUOTE BREAK ════════════════════════════════════════════ -->
 <section class="quote-break">
   <div class="section-inner quote-break__inner">
-    <p class="quote-break__text reveal">
-      Не доверяете ИИ?
-    </p>
-    <p class="quote-break__desc reveal">
-      Мы также предлагаем подписочный формат: сначала запускаем решение, а после тестового периода вы решаете, продолжать ли работу.
-    </p>
+    <h2 class="quote-break__text reveal">Не доверяете ИИ?</h2>
+    <p class="quote-break__description reveal">Мы предлагаем подписочный формат: сначала создаём и внедряем решение, а после запуска вы пользуетесь им в подписке с возможностью остановить в любой момент.</p>
+    <a class="btn btn-accent reveal quote-break__action" href="#contact" data-open-form>Обсудить задачу</a>
   </div>
 </section>
 
-<section class="faq-section" id="faq">
+<section class="faq-section">
   <div class="section-inner">
     <div class="faq-list">
-      <article class="faq-item is-open">
-        <button class="faq-question" type="button">
-          <span>Сможет ли ИИ полностью заменить наших сотрудников?</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in lorem vitae neque luctus accumsan. Integer ac nisl ut lorem feugiat viverra.
-        </div>
-      </article>
-      <article class="faq-item">
-        <button class="faq-question" type="button">
-          <span>Как долго длится внедрение ИИ в существующие процессы?</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit, arcu a condimentum bibendum, leo metus interdum urna, non varius neque augue eget odio.
-        </div>
-      </article>
-      <article class="faq-item">
-        <button class="faq-question" type="button">
-          <span>Что нужно от нас для старта разработки под ключ?</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac lorem eros. Duis ultricies quam sem, vitae dictum metus lobortis at.
-        </div>
-      </article>
-      <article class="faq-item">
-        <button class="faq-question" type="button">
-          <span>Работаете ли вы с государственными компаниями?</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat augue at ante venenatis, eget volutpat nulla finibus.
-        </div>
-      </article>
+      <article class="faq-item is-open"><button class="faq-question" type="button" aria-expanded="true"><span>Сможет ли ИИ полностью заменить наших сотрудников?</span><span class="faq-icon">−</span></button><div class="faq-answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum nunc eget lectus pharetra, vitae feugiat risus sagittis.</p></div></article>
+      <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>Как долго длится внедрение ИИ в существующие процессы?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dapibus nunc vitae lorem posuere, ac hendrerit magna mattis.</p></div></article>
+      <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>Что нужно от нас для старта разработки под ключ?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus velit in orci porta, ut varius purus viverra.</p></div></article>
+      <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>Работаете ли вы с государственными компаниями?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec lacus fringilla, ultricies arcu vitae, faucibus enim.</p></div></article>
     </div>
   </div>
 </section>
-
-
 
 
 <!-- ═══ FOOTER ════════════════════════════════════════════════ -->
@@ -1349,6 +1325,23 @@ mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
   window.addEventListener('resize',update);
   update();
 })();
+
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', () => {
+    const item = button.closest('.faq-item');
+    const isOpen = item.classList.contains('is-open');
+    document.querySelectorAll('.faq-item').forEach(el => {
+      el.classList.remove('is-open');
+      el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      el.querySelector('.faq-icon').textContent = '+';
+    });
+    if (!isOpen) {
+      item.classList.add('is-open');
+      button.setAttribute('aria-expanded', 'true');
+      button.querySelector('.faq-icon').textContent = '−';
+    }
+  });
+});
 
 /* ═══ REVEAL ON SCROLL ════════════════════════════════════= */
 (function() {
