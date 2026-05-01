@@ -611,14 +611,14 @@
     }
     .quote-break__inner {
       display:grid;
-      grid-template-columns:minmax(260px,1fr) minmax(300px,1fr);
+      grid-template-columns:minmax(260px,1fr) minmax(300px,1.2fr);
       align-items:start;
-      gap:36px;
+      gap:220px;
     }
     .quote-break__title {
       margin:0;
       font-family:"Space Grotesk","Montserrat",sans-serif;
-      font-size:clamp(32px,4vw,68px);
+      font-size:clamp(32px,4vw,58px);
       font-weight:700;
       letter-spacing:-0.04em;
       line-height:1.04;
@@ -628,13 +628,13 @@
     .quote-break__content { display:flex; flex-direction:column; align-items:flex-start; gap:24px; }
     .quote-break__text {
       margin:0;
-      font-size:clamp(15px,1.25vw,22px);
+      font-size:clamp(15px,1.25vw,18px);
       font-weight:500;
       line-height:1.5;
       color:var(--muted-strong);
       max-width:520px;
     }
-    .quote-break__accent { color:var(--text); font-weight:700; }
+    .quote-break__accent { color:var(--accent); font-weight:700; }
 
     .economics-section {
       padding:88px 0 96px;
@@ -682,7 +682,7 @@
       line-height:1.05;
       color:var(--text);
     }
-    .faq-list { display:flex; flex-direction:column; gap:10px; max-width:920px; margin:0 auto; }
+    .faq-list { display:flex; flex-direction:column; gap:20px;}
     .faq-item {
       border:1px solid rgba(232,146,10,0.45);
       border-radius:18px;
@@ -986,16 +986,19 @@
   <div class="section-inner">
     <div class="section-heading">
       <p class="eyebrow reveal">Экономика внедрения</p>
-      <h2 class="reveal">Средние показатели окупаемости AI-решений</h2>
+      <h2 class="reveal">Окупаемость AI-решений</h2>
+      <p class="section-text reveal">
+        Цифры ниже — средние показатели по реальным внедрениям. Результаты получены на основе проектов для наших клиентов
+      </p>
     </div>
     <div class="economics-grid">
       <article class="economics-card reveal">
         <p class="economics-metric">3 месяца</p>
-        <p class="economics-desc">средняя окупаемость</p>
+        <p class="economics-desc">Период окупаемости</p>
       </article>
       <article class="economics-card reveal">
         <p class="economics-metric">282% ROI</p>
-        <p class="economics-desc">средний возврат инвестиций за год</p>
+        <p class="economics-desc">Возврат инвестиций за 12 месяцев</p>
       </article>
     </div>
   </div>
@@ -1198,7 +1201,10 @@ style="background:linear-gradient(180deg,rgba(28,13,0,0.7) 0%,rgba(10,5,0,0.85) 
   <div class="section-inner quote-break__inner">
     <h2 class="quote-break__title reveal">Подписочный формат</h2>
     <div class="quote-break__content reveal">
-      <p class="quote-break__text">Не доверяете ИИ? Мы предлагаем <span class="quote-break__accent">безопасный запуск</span>: сначала разрабатываем решение, а дальше Вы пользуетесь им по подписке с возможностью остановить её в любой момент.</p>
+      <p class="quote-break__text">
+        Не доверяете ИИ?<br>
+        Мы предлагаем <span class="quote-break__accent">безопасный запуск</span>: сначала разрабатываем решение, а дальше Вы пользуетесь им по подписке с возможностью остановить её в любой момент.
+      </p>
       <a class="btn btn-accent" href="#contact" data-open-form>Обсудить задачу</a>
     </div>
   </div>
@@ -1214,7 +1220,7 @@ style="background:linear-gradient(180deg,rgba(28,13,0,0.7) 0%,rgba(10,5,0,0.85) 
     <div class="faq-list">
       <article class="faq-item is-open">
         <button class="faq-question" type="button" aria-expanded="true">
-          <span>За какой срок появляется первый измеримый эффект (не финальный проект, а первый эффект)?</span>
+          <span>Когда появится первый измеримый эффект?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
         <div class="faq-answer">
@@ -1232,7 +1238,7 @@ style="background:linear-gradient(180deg,rgba(28,13,0,0.7) 0%,rgba(10,5,0,0.85) 
       </article>
       <article class="faq-item">
         <button class="faq-question" type="button" aria-expanded="false">
-          <span>Какие KPI вы фиксируете до старта (время, ошибки, конверсия, ФОТ и т.д.)?</span>
+          <span>Какие KPI вы фиксируете до старта?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
         <div class="faq-answer">
