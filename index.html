@@ -607,29 +607,34 @@
     /* ═══ QUOTE BREAK ═══════════════════════════════════════ */
     .quote-break {
       padding:100px 0 80px; position:relative;
-      text-align:center;
       background:linear-gradient(180deg,rgba(8,4,0,0.98) 0%,rgba(4,2,0,0.95) 50%,rgba(10,5,0,0.98) 100%);
     }
     .quote-break__inner {
-      display:flex; flex-direction:column; align-items:center; gap:28px;
+      display:grid;
+      grid-template-columns:minmax(260px,1fr) minmax(360px,1.35fr);
+      align-items:start;
+      gap:36px;
     }
-    .quote-break__text {
+    .quote-break__title {
+      margin:0;
       font-family:"Space Grotesk","Montserrat",sans-serif;
-      font-size:clamp(24px,3.8vw,54px);
-      font-weight:700; letter-spacing:-0.04em; line-height:1.18;
-      color:var(--text); max-width:860px;
+      font-size:clamp(32px,4vw,68px);
+      font-weight:700;
+      letter-spacing:-0.04em;
+      line-height:1.04;
+      text-transform:uppercase;
+      color:var(--text);
     }
-    .quote-break__text em {
-      font-style:normal;
-      font-size:clamp(16px,2vw,28px);
-      font-weight:400;
-      color:var(--muted_gray);
+    .quote-break__content { display:flex; flex-direction:column; align-items:flex-start; gap:24px; }
+    .quote-break__text {
+      margin:0;
+      font-size:clamp(16px,1.55vw,27px);
+      font-weight:500;
+      line-height:1.5;
+      color:var(--muted-strong);
+      max-width:640px;
     }
-    .quote-break__accent { color:var(--accent); }
-    .quote-break__desc {
-      color:var(--muted-strong); font-size:clamp(16px,1.55vw,34px); line-height:1.5;
-      max-width:460px;
-    }
+    .quote-break__accent { color:var(--text); font-weight:700; }
 
     .economics-section {
       padding:88px 0 96px;
@@ -858,6 +863,7 @@
       .process-step { grid-template-columns:44px 1fr; }
       .process-number { display:none; }
       .process-list::before { left:21px; }
+      .quote-break__inner { grid-template-columns:1fr; gap:22px; }
     }
     @media (max-width:620px) {
       body { font-size:14px; }
@@ -876,6 +882,10 @@
       .process-step { gap:14px; padding:20px 0; }
       .process-copy h3 { font-size:16px; }
       .process-copy p { font-size:14px; }
+      .quote-break { padding:72px 0 64px; }
+      .quote-break__title { font-size:clamp(28px,9vw,42px); }
+      .quote-break__content { gap:18px; }
+      .quote-break__text { font-size:15px; line-height:1.55; }
       .faq-item { padding:16px; }
       .contact-modal { padding:14px; }
       .contact-main { padding:22px 16px; }
@@ -1186,11 +1196,11 @@ style="background:linear-gradient(180deg,rgba(28,13,0,0.7) 0%,rgba(10,5,0,0.85) 
 <!-- ═══ QUOTE BREAK ════════════════════════════════════════════ -->
 <section class="quote-break">
   <div class="section-inner quote-break__inner">
-    <p class="quote-break__text reveal">
-      Не доверяете ИИ?<br>
-      <em>Мы также предлагаем Вам <span class="quote-break__accent">подписочный формат</span> —<br> если не устроит, прекретите подписку</em>
-    </p>
-    <a class="btn btn-accent reveal" href="#contact" data-open-form>Обсудить задачу</a>
+    <h2 class="quote-break__title reveal">Подписочный формат</h2>
+    <div class="quote-break__content reveal">
+      <p class="quote-break__text">Не доверяете ИИ? <span class="quote-break__accent">Мы предлагаем безопасный запуск:</span> сначала разрабатываем решение, а дальше Вы пользуетесь им по подписке с возможностью остановить её в любой момент.</p>
+      <a class="btn btn-accent" href="#contact" data-open-form>Обсудить задачу</a>
+    </div>
   </div>
 </section>
 
