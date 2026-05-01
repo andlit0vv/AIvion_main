@@ -316,21 +316,21 @@
 
     /* ═══ AMBIENT BG LAYER ══════════════════════════════════ */
     #ambientBg {
-      position:fixed; inset:0; z-index:-1; pointer-events:none;
+      position:fixed; inset:0; z-index:1; pointer-events:none;
       --gx1: 50%;
       --gy1: 50%;
       --gx2: 72%;
       --gy2: 34%;
-      --gfocus: 0.95;
+      --gfocus: 1;
       --gdual: 0;
-      will-change: background-position, transform, opacity;
+      will-change: transform, opacity;
       transform: translateZ(0);
-      transition: --gx1 .9s cubic-bezier(.22,1,.36,1), --gy1 .9s cubic-bezier(.22,1,.36,1), --gx2 .9s cubic-bezier(.22,1,.36,1), --gy2 .9s cubic-bezier(.22,1,.36,1), --gfocus .9s cubic-bezier(.22,1,.36,1), --gdual .9s cubic-bezier(.22,1,.36,1);
       background:
-        radial-gradient(ellipse 78vw 52vh at var(--gx1) var(--gy1), rgba(255,90,19,calc(0.038 * var(--gfocus))) 0%, transparent 63%),
-        radial-gradient(ellipse 50vw 36vh at var(--gx2) var(--gy2), rgba(255,122,52,calc(0.025 * var(--gdual))) 0%, transparent 62%),
-        radial-gradient(ellipse 80vw 48vh at calc(100% - var(--gx2)) calc(100% - var(--gy2)), rgba(220,116,25,calc(0.022 * var(--gdual))) 0%, transparent 64%);
-      animation: ambientShift 30s ease-in-out infinite alternate;
+        radial-gradient(ellipse 66vw 42vh at var(--gx1) var(--gy1), rgba(255,90,19,calc(0.13 * var(--gfocus))) 0%, rgba(255,90,19,calc(0.06 * var(--gfocus))) 36%, transparent 72%),
+        radial-gradient(ellipse 42vw 30vh at var(--gx2) var(--gy2), rgba(255,122,52,calc(0.08 * var(--gdual))) 0%, transparent 67%),
+        radial-gradient(ellipse 42vw 30vh at calc(100% - var(--gx2)) calc(100% - var(--gy2)), rgba(220,116,25,calc(0.072 * var(--gdual))) 0%, transparent 68%);
+      animation: ambientShift 24s ease-in-out infinite alternate;
+      opacity: 0.96;
     }
     @keyframes ambientShift {
       0%   { opacity:.85; transform:scale(1) translate(0,0); }
@@ -341,7 +341,7 @@
 
     /* ═══ SHARED SECTIONS WRAPPER ════════════════════════════ */
     .shared-wrap {
-      position:relative;
+      position:relative; z-index:2;
       background:linear-gradient(180deg,rgba(10,8,10,0.34) 0%,rgba(20,12,8,0.52) 28%,rgba(26,14,8,0.68) 56%,rgba(20,12,8,0.62) 78%,rgba(14,10,10,0.54) 100%);
     }
     .logo {
@@ -509,7 +509,7 @@
     }
     .metric-card__values { font-size:15px; font-weight:700; letter-spacing:-0.01em; color:#fff; margin-bottom:4px; }
     .metric-card__values del { color:rgba(255,255,255,0.45); margin-right:8px; }
-    .metric-card__label { font-size:12px; color:var(--muted); line-height:1.4; }
+    .metric-card__label { font-size:13px; color:var(--accent); line-height:1.45; font-weight:600; }
     .portfolio-card__link {
       display:inline-flex; align-items:center; justify-content:center;
       color:rgba(255,255,255,0.86); font-family:"Manrope",sans-serif;
@@ -1439,20 +1439,21 @@ mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
   function ease(v){return v<0.5?4*v*v*v:1-Math.pow(-2*v+2,3)/2;}
   function updateAmbient(){
     if(!ambient||sectionTargets.length<2)return;
+    const scrollY=window.scrollY||window.pageYOffset||0;
     const vh=Math.max(window.innerHeight,1);
-    const center=vh*0.5;
+    const anchorY=scrollY+vh*0.5;
+    const points=sectionTargets.map(item=>({
+      ...item,
+      y:item.el.offsetTop+item.el.offsetHeight*0.5
+    })).sort((l,r)=>l.y-r.y);
     let idx=0;
-    for(let i=0;i<sectionTargets.length-1;i++){
-      const top=sectionTargets[i].el.getBoundingClientRect().top;
-      const nextTop=sectionTargets[i+1].el.getBoundingClientRect().top;
-      if(center>=top&&center<nextTop){idx=i;break;}
-      if(center>=nextTop)idx=i+1;
+    for(let i=0;i<points.length-1;i++){
+      if(anchorY>=points[i].y&&anchorY<points[i+1].y){idx=i;break;}
+      if(anchorY>=points[i+1].y)idx=i+1;
     }
-    const a=sectionTargets[Math.min(idx,sectionTargets.length-1)];
-    const b=sectionTargets[Math.min(idx+1,sectionTargets.length-1)];
-    const at=a.el.getBoundingClientRect().top;
-    const bt=b.el.getBoundingClientRect().top;
-    const raw=bt===at?1:clamp((center-at)/(bt-at),0,1);
+    const a=points[Math.min(idx,points.length-1)];
+    const b=points[Math.min(idx+1,points.length-1)];
+    const raw=b.y===a.y?1:clamp((anchorY-a.y)/(b.y-a.y),0,1);
     const t=ease(raw);
     ambient.style.setProperty('--gx1',`${lerp(a.x1,b.x1,t).toFixed(2)}%`);
     ambient.style.setProperty('--gy1',`${lerp(a.y1,b.y1,t).toFixed(2)}%`);
