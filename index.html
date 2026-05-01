@@ -30,7 +30,7 @@
     html { scroll-behavior:smooth; }
 
     body {
-      background: radial-gradient(120% 90% at 20% 0%, #1a1008 0%, #090b10 45%, #090b10 100%);
+      background: var(--bg);
       background-attachment: fixed;
       color: var(--text);
       font-family: "Manrope", sans-serif;
@@ -459,9 +459,9 @@
       mask-image:linear-gradient(180deg,transparent 0%,transparent 28%,rgba(0,0,0,0.45) 62%,black 100%);
     }
     .mesh { position:absolute; border-radius:50%; pointer-events:none; z-index:0; animation:meshDrift 22s ease-in-out infinite alternate; }
-    .mesh-a { bottom:-15%; left:-8%; width:58vw; height:58vw; background:radial-gradient(circle,rgba(255,90,19,0.18) 0%,rgba(200,100,5,0.07) 45%,transparent 70%); filter:blur(90px); }
-    .mesh-b { bottom:-12%; right:-6%; width:46vw; height:46vw; background:radial-gradient(circle,rgba(16,185,129,0.13) 0%,transparent 65%); filter:blur(110px); animation-duration:30s; animation-direction:reverse; }
-    .mesh-center { position:absolute; border-radius:50%; pointer-events:none; z-index:0; bottom:-5%; left:25%; right:25%; width:50vw; height:30vw; background:radial-gradient(ellipse,rgba(255,122,52,0.12) 0%,rgba(255,90,19,0.05) 50%,transparent 75%); filter:blur(80px); animation:meshDrift 28s ease-in-out infinite alternate-reverse; }
+    .mesh-a { bottom:-12%; left:-10%; width:60vw; height:60vw; background-image:linear-gradient(rgba(255,90,19,0.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,90,19,0.09) 1px,transparent 1px); background-size:44px 44px; mask-image:radial-gradient(circle at 50% 50%,rgba(0,0,0,1) 0%,rgba(0,0,0,0.55) 55%,transparent 78%); }
+    .mesh-b { bottom:-10%; right:-8%; width:48vw; height:48vw; background-image:linear-gradient(rgba(255,122,52,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,122,52,0.08) 1px,transparent 1px); background-size:38px 38px; mask-image:radial-gradient(circle at 50% 50%,rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.45) 60%,transparent 80%); animation-duration:30s; animation-direction:reverse; }
+    .mesh-center { position:absolute; border-radius:50%; pointer-events:none; z-index:0; bottom:-4%; left:25%; right:25%; width:50vw; height:30vw; background-image:linear-gradient(rgba(255,90,19,0.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,90,19,0.09) 1px,transparent 1px); background-size:34px 34px; mask-image:radial-gradient(ellipse,rgba(0,0,0,1) 0%,rgba(0,0,0,0.4) 58%,transparent 80%); animation:meshDrift 28s ease-in-out infinite alternate-reverse; }
     .mesh-horizon { position:absolute; pointer-events:none; z-index:1; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent 0%,rgba(255,90,19,0.22) 30%,rgba(255,122,52,0.36) 50%,rgba(255,90,19,0.22) 70%,transparent 100%); }
     @keyframes meshDrift { 0%{transform:translate(0,0) scale(1);} 100%{transform:translate(3%,-3%) scale(1.06);} }
 
@@ -507,7 +507,7 @@
       background:rgba(255,122,52,0.045);
       box-shadow:0 8px 20px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,122,52,0.12);
     }
-    .metric-card__values { font-size:15px; font-weight:700; letter-spacing:-0.01em; color:#fff; margin-bottom:4px; }
+    .metric-card__values { font-size:clamp(18px,1.9vw,24px); font-weight:700; letter-spacing:-0.01em; color:#fff; margin-bottom:4px; line-height:1.1; }
     .metric-card__values del { color:rgba(255,255,255,0.45); margin-right:8px; }
     .metric-card__label { font-size:13px; color:var(--accent); line-height:1.45; font-weight:600; }
     .portfolio-card__link {
@@ -533,16 +533,21 @@
       display:grid; grid-template-columns:repeat(2,1fr); gap:20px;
     }
     .services-grid .glass-card {
-      background:rgba(255,255,255,0.01);
-      border:1px solid rgba(255,255,255,0.14);
-      box-shadow:0 8px 26px rgba(0,0,0,0.14);
-      backdrop-filter:blur(3px);
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.18);
+      box-shadow:none;
+      backdrop-filter:none;
+    }
+    .services-grid .glass-card:hover {
+      background:transparent;
+      border-color:rgba(255,122,52,0.52);
+      box-shadow:none;
     }
     .service-card { display:flex; flex-direction:column; gap:18px; }
     .service-card--primary {
-      background:rgba(255,122,52,0.03);
-      border-color:rgba(255,122,52,0.38);
-      box-shadow:0 10px 28px rgba(0,0,0,0.22);
+      background:transparent;
+      border-color:rgba(255,122,52,0.48);
+      box-shadow:none;
     }
     .service-card--primary h3 { color:#fff; }
     .service-card--primary .service-list li { color:rgba(255,255,255,0.9); }
@@ -648,7 +653,7 @@
     /* ═══ QUOTE BREAK ═══════════════════════════════════════ */
     .quote-break {
       padding:100px 0 80px; position:relative;
-      background:linear-gradient(180deg,rgba(8,4,0,0.98) 0%,rgba(4,2,0,0.95) 50%,rgba(10,5,0,0.98) 100%);
+      background:transparent;
     }
     .quote-break__inner {
       display:grid;
@@ -679,7 +684,7 @@
 
     .economics-section {
       padding:88px 0 96px;
-      background:linear-gradient(180deg,#0b0b0b 0%,#0f0f0f 100%);
+      background:transparent;
       border-top:1px solid rgba(255,255,255,0.05);
       border-bottom:1px solid rgba(255,255,255,0.05);
     }
@@ -714,7 +719,7 @@
 
     .faq-section {
       padding:10px 0 72px;
-      background:linear-gradient(180deg,rgba(8,4,0,0.98) 0%,rgba(4,2,0,0.95) 100%);
+      background:transparent;
     }
     .faq-title {
       margin:0 0 26px;
