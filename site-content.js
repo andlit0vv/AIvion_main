@@ -170,8 +170,9 @@ window.siteContent = {
   setHtml(document.querySelector(".opening-title"), content.opening.titleHtml);
   setText(document.querySelector(".opening-lead"), content.opening.lead);
   setTextList(Array.from(document.querySelectorAll(".opening-actions a")), content.opening.actions);
+  const openingStats = Array.isArray(content.opening?.stats) ? content.opening.stats : [];
   Array.from(document.querySelectorAll(".hero-stats .hero-stat")).forEach((card, index) => {
-    const item = content.opening.stats[index];
+    const item = openingStats[index];
     if (!item) return;
     setText(card.querySelector(".stat-label"), item.label);
     setText(card.querySelector(".stat-value"), item.value);
