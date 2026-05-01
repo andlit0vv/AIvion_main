@@ -364,7 +364,7 @@
 
     /* ═══ SECTION COMMON ════════════════════════════════════ */
     .section-inner {
-      width:min(100% - 32px,1240px); margin:0 auto;
+      width:min(100% - 32px,1080px); margin:0 auto;
       position:relative; z-index:2;
     }
     .section-pad { padding:110px 0 100px; position:relative; }
@@ -620,17 +620,17 @@
     /* ═══ QUOTE BREAK ═══════════════════════════════════════ */
     .quote-break {
       padding:100px 0 80px; position:relative;
-      text-align:center;
       background:linear-gradient(180deg,rgba(8,4,0,0.98) 0%,rgba(4,2,0,0.95) 50%,rgba(10,5,0,0.98) 100%);
     }
     .quote-break__inner {
-      display:flex; flex-direction:column; align-items:center; gap:28px;
+      display:grid; grid-template-columns:1.45fr 1fr; gap:56px;
+      align-items:center;
     }
     .quote-break__text {
       font-family:"Space Grotesk","Montserrat",sans-serif;
       font-size:clamp(24px,3.8vw,54px);
       font-weight:700; letter-spacing:-0.04em; line-height:1.18;
-      color:var(--text); max-width:860px;
+      color:var(--text);
     }
     .quote-break__text em {
       font-style:normal;
@@ -638,6 +638,41 @@
       -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
       filter:drop-shadow(0 0 18px rgba(232,146,10,0.28));
     }
+    .quote-break__desc {
+      color:var(--muted-strong); font-size:clamp(16px,1.55vw,34px); line-height:1.5;
+      max-width:460px;
+    }
+    .faq-section {
+      padding:10px 0 90px;
+      background:linear-gradient(180deg,rgba(8,4,0,0.98) 0%,rgba(4,2,0,0.95) 100%);
+    }
+    .faq-list { display:flex; flex-direction:column; gap:18px; }
+    .faq-item {
+      border:1px solid rgba(232,146,10,0.45);
+      border-radius:32px;
+      background:radial-gradient(circle at 85% 0, rgba(232,146,10,0.20), rgba(30,14,0,0.78) 50%, rgba(0,0,0,0.95) 100%);
+      overflow:hidden;
+    }
+    .faq-question {
+      width:100%; background:none; border:none; color:var(--text); cursor:pointer;
+      padding:34px 44px; display:flex; align-items:center; justify-content:space-between; gap:20px;
+      text-align:left;
+    }
+    .faq-question span:first-child { font-size:clamp(26px,3.5vw,56px); font-weight:700; letter-spacing:-0.045em; line-height:1.06; }
+    .faq-icon { width:36px; height:36px; position:relative; flex-shrink:0; }
+    .faq-icon::before, .faq-icon::after {
+      content:""; position:absolute; left:50%; top:50%; background:var(--accent); transform:translate(-50%,-50%);
+      border-radius:999px;
+    }
+    .faq-icon::before { width:32px; height:2px; }
+    .faq-icon::after { width:2px; height:32px; transition:opacity .25s var(--ease); }
+    .faq-answer {
+      max-height:0; opacity:0; overflow:hidden; padding:0 44px;
+      color:var(--muted-strong); font-size:clamp(17px,1.7vw,44px); line-height:1.46;
+      transition:max-height .35s var(--ease), opacity .25s var(--ease), padding-bottom .35s var(--ease);
+    }
+    .faq-item.is-open .faq-answer { max-height:220px; opacity:1; padding-bottom:30px; }
+    .faq-item.is-open .faq-icon::after { opacity:0; }
     /* ═══ FOOTER ════════════════════════════════════════════ */
     .site-footer {
       border-top:1px solid var(--stroke); padding:64px 0 36px;
@@ -793,6 +828,10 @@
       .process-number { display:none; }
       .process-list::before { left:21px; }
       .process-dot { left:15px; }
+      .quote-break__inner { grid-template-columns:1fr; gap:24px; }
+      .faq-question { padding:26px 24px; }
+      .faq-answer { padding:0 24px; }
+      .faq-item.is-open .faq-answer { padding-bottom:24px; }
     }
     @media (max-width:620px) {
       .hero-stats, .promise-grid, .services-grid { grid-template-columns:1fr; }
@@ -1089,10 +1128,54 @@ style="background:linear-gradient(180deg,rgba(28,13,0,0.7) 0%,rgba(10,5,0,0.85) 
 <section class="quote-break">
   <div class="section-inner quote-break__inner">
     <p class="quote-break__text reveal">
-      Не доверяете ИИ?<br>
-      <em>Мы также предлагаем Вам подписочный формат —<br> если не устроит, прекретите подписку</em>
+      Не доверяете ИИ?
     </p>
-    <a class="btn btn-accent reveal" href="#contact" data-open-form>Обсудить задачу</a>
+    <p class="quote-break__desc reveal">
+      Мы также предлагаем подписочный формат: сначала запускаем решение, а после тестового периода вы решаете, продолжать ли работу.
+    </p>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <div class="faq-list">
+      <article class="faq-item is-open">
+        <button class="faq-question" type="button">
+          <span>Сможет ли ИИ полностью заменить наших сотрудников?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in lorem vitae neque luctus accumsan. Integer ac nisl ut lorem feugiat viverra.
+        </div>
+      </article>
+      <article class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Как долго длится внедрение ИИ в существующие процессы?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit, arcu a condimentum bibendum, leo metus interdum urna, non varius neque augue eget odio.
+        </div>
+      </article>
+      <article class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Что нужно от нас для старта разработки под ключ?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac lorem eros. Duis ultricies quam sem, vitae dictum metus lobortis at.
+        </div>
+      </article>
+      <article class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Работаете ли вы с государственными компаниями?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat augue at ante venenatis, eget volutpat nulla finibus.
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -1228,6 +1311,13 @@ mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
 
 /* ═══ HERO PANELS ══════════════════════════════════════════ */
 (function() {
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      item?.classList.toggle('is-open');
+    });
+  });
+
   const heroEl=document.getElementById('hero');
   const panels=[document.getElementById('hp0'),document.getElementById('hp1'),document.getElementById('hp2')];
   function clamp(v,a,b){return Math.min(Math.max(v,a),b);}
