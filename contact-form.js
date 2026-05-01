@@ -90,15 +90,15 @@
                 <input class="cf-input" type="text" name="company" autocomplete="organization"/>
               </label>
             </div>
-            <label class="cf-label">
-              <span class="cf-label-text">Выберите бюджет</span>
-              <select class="cf-input" name="budget">
-                <option value="до 200 000">до 200 000</option>
-                <option value="200 000 - 1 000 000">200 000 - 1 000 000</option>
-                <option value="1 000 000 - 3 000 000">1 000 000 - 3 000 000</option>
-                <option value="Более 3 000 000">Более 3 000 000</option>
-              </select>
-            </label>
+            <fieldset class="cf-roles">
+              <legend>Бюджет</legend>
+              <div class="cf-roles-grid">
+                <label class="cf-chip"><input type="radio" name="budget" value="до 200 000" checked/><span>до 200 000</span></label>
+                <label class="cf-chip"><input type="radio" name="budget" value="200 000 - 1 000 000"/><span>200 000 - 1 000 000</span></label>
+                <label class="cf-chip"><input type="radio" name="budget" value="1 000 000 - 3 000 000"/><span>1 000 000 - 3 000 000</span></label>
+                <label class="cf-chip"><input type="radio" name="budget" value="Более 3 000 000"/><span>Более 3 000 000</span></label>
+              </div>
+            </fieldset>
             <div class="cf-grid">
               <label class="cf-label">
                 <span class="cf-label-text">Контакт для связи *</span>
