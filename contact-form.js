@@ -69,6 +69,15 @@
                 <input class="cf-input" type="text" name="company" autocomplete="organization"/>
               </label>
             </div>
+            <label class="cf-label">
+              <span class="cf-label-text">Выберите бюджет</span>
+              <select class="cf-input" name="budget">
+                <option value="до 200 000">до 200 000</option>
+                <option value="200 000 - 1 000 000">200 000 - 1 000 000</option>
+                <option value="1 000 000 - 3 000 000">1 000 000 - 3 000 000</option>
+                <option value="Более 3 000 000">Более 3 000 000</option>
+              </select>
+            </label>
             <div class="cf-grid">
               <label class="cf-label">
                 <span class="cf-label-text">Контакт для связи *</span>
