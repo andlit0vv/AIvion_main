@@ -40,7 +40,7 @@
     .cf-custom-role.is-visible{display:flex}
     .cf-consents{display:flex;flex-direction:column;gap:10px}
     .cf-consent{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
-    .cf-consent input{margin-top:3px;accent-color:#E8920A;flex-shrink:0}
+    .cf-consent input{margin-top:3px;accent-color:var(--accent);flex-shrink:0}
     .cf-consent span{font-size:13px;color:rgba(107,114,128,1);line-height:1.55}
     .cf-consent a{color:var(--accent);text-decoration:none}
     .cf-legal{font-size:12px;color:rgba(107,114,128,1);opacity:0.7;line-height:1.5}
