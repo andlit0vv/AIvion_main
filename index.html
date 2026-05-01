@@ -1526,7 +1526,7 @@ createDotGrid(document.getElementById('servicesDotGrid'));
     if(processSteps.length){
       const processSection=document.getElementById('process');
       const rect=processSection.getBoundingClientRect(),vh=Math.max(window.innerHeight,1);
-      const bp=clamp((vh-rect.top)/(vh+rect.height*0.12),0,1);
+      const bp=clamp((vh-rect.top)/(vh+rect.height*0.75),0,1);
       let activeIndex=-1;
       const viewportCenter=vh*0.5;
       let minDistance=Infinity;
@@ -1542,7 +1542,8 @@ createDotGrid(document.getElementById('servicesDotGrid'));
         const end=vh*0.22;
         const localRaw=(start-stepRect.top)/Math.max(start-end,1);
         const localProgress=clamp(localRaw,0,1);
-        const lp=Math.max(clamp((bp-i*0.11)/0.34,0,1),localProgress),e=ease(lp);
+        const staged=clamp((bp-i*0.09)/0.48,0,1);
+        const lp=Math.max(staged,localProgress),e=ease(lp);
         const direction=i%2===0?-1:1;
         const shiftX=(1-e)*direction*56;
         const shiftY=(1-e)*62;
