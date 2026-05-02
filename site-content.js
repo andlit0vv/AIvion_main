@@ -11,7 +11,7 @@ window.siteContent = {
   },
   opening: {
     eyebrow: "AI-Автоматизация · IT-Разработка",
-    titleHtml: "Масштабируйте бизнес <br>с помощью  <span class=\"title-accent\">ИИ</span>",
+    titleHtml: "Снижайте расходы <br>с помощью  <span class=\"title-accent\">ИИ</span>",
     lead: "Сокращаем до 60% затрат на операционку с помощью автоматизации и AI",
     actions: ["Узнать больше", "Посмотреть кейсы"],
   },
